@@ -31,7 +31,7 @@ public class DatastoreProducer {
         final Morphia morphia = new Morphia();
         morphia.mapPackage(EntityPackage.class.getPackage().getName());
 
-        final Datastore datastore = morphia.createDatastore(mongoClient, "userapp"); // FIXME dbName
+        final Datastore datastore = morphia.createDatastore(mongoClient, "daniel_haeser_rech_userapp");
         datastore.ensureIndexes();
         return datastore;
     }
