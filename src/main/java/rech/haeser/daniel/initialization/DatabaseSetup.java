@@ -22,11 +22,12 @@ public class DatabaseSetup {
 
     @PostConstruct
     void postConstruct() {
+        ensureIndexes();
         ensureAdminExists();
     }
 
     // FIXME Created for demo purposes for setting up an admin user. In a real world scenario it must not be used since
-    // FIXME the default admin password would stay in memory and in the app bundle (war file).
+    // the default admin password would stay in memory and in the app bundle (war file).
     private void ensureAdminExists() {
         final Query<User> query = datastore.createQuery(User.class);
         User admin = query.field("email").equal("admin").get();
@@ -34,5 +35,9 @@ public class DatabaseSetup {
             admin = new User("admin", "123456");
             datastore.save(admin);
         }
+    }
+
+    private void ensureIndexes() {
+        // TODO
     }
 }
