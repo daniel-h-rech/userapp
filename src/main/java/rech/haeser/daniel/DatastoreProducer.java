@@ -33,6 +33,7 @@ public class DatastoreProducer {
         new ValidationExtension(morphia);
         morphia.mapPackageFromClass(EntityPackage.class);
 
+        // TODO get the DB name from an external config file
         return morphia.createDatastore(mongoClient, "daniel_haeser_rech_userapp");
     }
 
