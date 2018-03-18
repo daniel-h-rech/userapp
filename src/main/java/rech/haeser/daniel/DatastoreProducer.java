@@ -2,9 +2,9 @@ package rech.haeser.daniel;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.enterprise.inject.Produces;
-import javax.inject.Inject;
 
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
@@ -21,7 +21,7 @@ public class DatastoreProducer {
 
     private MongoClient mongoClient;
 
-    @Inject
+    @EJB
     private Configuration configuration;
 
     @PostConstruct
