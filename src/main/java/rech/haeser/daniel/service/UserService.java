@@ -3,6 +3,7 @@ package rech.haeser.daniel.service;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.ws.rs.DELETE;
@@ -74,10 +75,10 @@ public class UserService {
     @GET
     @RolesAllowed(Permission.USER_RETRIEVE)
     public StreamingOutput query(
-            @QueryParam("filter")                                          final String filter,
-            @QueryParam("orderby") @Valid @Pattern(regexp = ORDERBY_REGEX) final String orderBy,
-            @QueryParam("offset")  @DefaultValue("0")                      final int offset,
-            @QueryParam("limit")   @DefaultValue(DEFAULT_MAX_RESULTS)      final int limit) {
+            @QueryParam("filter")                                                    final String filter,
+            @QueryParam("orderby") @Valid @Pattern(regexp = ORDERBY_REGEX)           final String orderBy,
+            @QueryParam("offset")  @Valid @Min(0) @DefaultValue("0")                 final int offset,
+            @QueryParam("limit")   @Valid @Min(1) @DefaultValue(DEFAULT_MAX_RESULTS) final int limit) {
 
         // Using a StreamingOutput to reduce the memory footprint for large result sets
         return new QueryResultsStreamingOutput(controller.query(filter, orderBy, offset, limit));
