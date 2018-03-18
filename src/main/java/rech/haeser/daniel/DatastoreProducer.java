@@ -4,6 +4,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.Singleton;
 import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
 
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
@@ -20,9 +21,14 @@ public class DatastoreProducer {
 
     private MongoClient mongoClient;
 
+    @Inject
+    private Configuration configuration;
+
     @PostConstruct
     public void postConstruct() {
-        mongoClient = new MongoClient();
+        final String host = configuration.get(Configuration.Key.DATABASE_HOST);
+        final int port = configuration.getAsInt(Configuration.Key.DATABASE_PORT);
+        mongoClient = new MongoClient(host, port);
     }
 
     @Produces
@@ -33,8 +39,7 @@ public class DatastoreProducer {
         new ValidationExtension(morphia);
         morphia.mapPackageFromClass(EntityPackage.class);
 
-        // TODO get the DB name from an external config file
-        return morphia.createDatastore(mongoClient, "daniel_haeser_rech_userapp");
+        return morphia.createDatastore(mongoClient, configuration.get(Configuration.Key.DATABASE_NAME));
     }
 
     @PreDestroy

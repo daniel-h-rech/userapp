@@ -39,7 +39,7 @@ public class WildflyVFSCompatibleMorphia extends Morphia {
                 }
             }
         } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException();
+            throw new RuntimeException("Error trying to map package " + packageName);
         }
         return this;
     }
