@@ -3,6 +3,7 @@ package rech.haeser.daniel.model;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.bson.types.ObjectId;
 import org.hibernate.validator.constraints.Email;
 import org.mindrot.jbcrypt.BCrypt;
 import org.mongodb.morphia.annotations.Entity;
@@ -23,7 +24,7 @@ public class User {
     private static final int MAXIMUM_PASSWORD_LENGTH = 64;
 
     @Id
-    private String id;
+    private ObjectId id;
 
     private String name;
 
@@ -48,7 +49,7 @@ public class User {
     }
 
     public String getId() {
-        return id;
+        return id.toString();
     }
 
     public String getName() {
