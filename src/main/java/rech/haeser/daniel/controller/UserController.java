@@ -1,6 +1,5 @@
 package rech.haeser.daniel.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -8,6 +7,8 @@ import javax.inject.Inject;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.query.FindOptions;
+import org.mongodb.morphia.query.Query;
 
 import rech.haeser.daniel.model.User;
 
@@ -38,7 +39,22 @@ public class UserController {
         datastore.delete(User.class, id);
     }
 
-    public List<User> query() {
-        return new ArrayList<>(); // FIXME implement
+    public List<User> query(final String filter,
+                            final String orderBy,
+                            final int offset,
+                            final int limit) {
+
+
+        final Query<User> query = datastore.createQuery(User.class);
+
+        if (orderBy != null) {
+            query.order(orderBy);
+        }
+
+        final FindOptions options = new FindOptions()
+                .skip(offset)
+                .limit(limit);
+
+        return query.asList(options);
     }
 }

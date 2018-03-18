@@ -6,7 +6,9 @@ import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
@@ -14,6 +16,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.bson.types.ObjectId;
@@ -30,6 +33,10 @@ import rech.haeser.daniel.service.security.Permission;
 @Produces(MediaType.APPLICATION_JSON)
 @Api
 public class UserService {
+
+    private static final String DEFAULT_MAX_RESULTS = "" + 100;
+
+    private static final String ORDERBY_REGEX = "[-?\\d\\w]+(,[-?\\d\\w]+)*";
 
     @EJB
     private UserController controller;
@@ -67,8 +74,12 @@ public class UserService {
 
     @GET
     @RolesAllowed(Permission.USER_RETRIEVE)
-    // FIXME add parameters
-    public List<User> query() {
-        return controller.query();
+    public List<User> query(
+            @QueryParam("filter")  @DefaultValue("")                       final String filter,
+            @QueryParam("orderby") @Valid @Pattern(regexp = ORDERBY_REGEX) final String orderBy,
+            @QueryParam("offset")  @DefaultValue("0")                      final int offset,
+            @QueryParam("limit")   @DefaultValue(DEFAULT_MAX_RESULTS)      final int limit) {
+
+        return controller.query(filter, orderBy, offset, limit);
     }
 }
