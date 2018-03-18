@@ -29,9 +29,9 @@ public class DatastoreProducer {
     @javax.inject.Singleton
     public Datastore produceDatastore() {
 
-        final Morphia morphia = new Morphia();
+        final Morphia morphia = new WildflyVFSCompatibleMorphia();
         new ValidationExtension(morphia);
-        morphia.mapPackage(EntityPackage.class.getPackage().getName());
+        morphia.mapPackageFromClass(EntityPackage.class);
 
         final Datastore datastore = morphia.createDatastore(mongoClient, "daniel_haeser_rech_userapp");
         datastore.ensureIndexes();
