@@ -28,7 +28,8 @@ public class AuthorizationFilter implements ContainerRequestFilter {
     public void filter(final ContainerRequestContext requestContext) {
 
         final String path = requestContext.getUriInfo().getPath();
-        if (!path.equals(ResourcePath.LOGIN)) {
+        if (!path.equals(ResourcePath.LOGIN)
+                && !path.equals(ResourcePath.SWAGGER)) {
 
             final String authorization = requestContext.getHeaders().getFirst("Authorization");
             if (authorization == null || !authorization.startsWith("Bearer ")) {
