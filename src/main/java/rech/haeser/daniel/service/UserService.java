@@ -1,7 +1,5 @@
 package rech.haeser.daniel.service;
 
-import java.util.List;
-
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.validation.Valid;
@@ -18,6 +16,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.StreamingOutput;
 
 import org.bson.types.ObjectId;
 
@@ -74,12 +73,13 @@ public class UserService {
 
     @GET
     @RolesAllowed(Permission.USER_RETRIEVE)
-    public List<User> query(
+    public StreamingOutput query(
             @QueryParam("filter")  @DefaultValue("")                       final String filter,
             @QueryParam("orderby") @Valid @Pattern(regexp = ORDERBY_REGEX) final String orderBy,
             @QueryParam("offset")  @DefaultValue("0")                      final int offset,
             @QueryParam("limit")   @DefaultValue(DEFAULT_MAX_RESULTS)      final int limit) {
 
-        return controller.query(filter, orderBy, offset, limit);
+        // Using a StreamingOutput to reduce the memory footprint for large result sets
+        return new QueryResultsStreamingOutput(controller.query(filter, orderBy, offset, limit));
     }
 }

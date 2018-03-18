@@ -1,13 +1,12 @@
 package rech.haeser.daniel.controller;
 
-import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.query.FindOptions;
+import org.mongodb.morphia.query.MorphiaIterator;
 import org.mongodb.morphia.query.Query;
 
 import rech.haeser.daniel.model.User;
@@ -39,10 +38,10 @@ public class UserController {
         datastore.delete(User.class, id);
     }
 
-    public List<User> query(final String filter,
-                            final String orderBy,
-                            final int offset,
-                            final int limit) {
+    public MorphiaIterator<User, User> query(final String filter,
+                                             final String orderBy,
+                                             final int offset,
+                                             final int limit) {
 
 
         final Query<User> query = datastore.createQuery(User.class);
@@ -55,7 +54,6 @@ public class UserController {
                 .skip(offset)
                 .limit(limit);
 
-        // TODO use fetch
-        return query.asList(options);
+        return query.fetch(options);
     }
 }
