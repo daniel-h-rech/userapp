@@ -33,9 +33,7 @@ public class DatastoreProducer {
         new ValidationExtension(morphia);
         morphia.mapPackageFromClass(EntityPackage.class);
 
-        final Datastore datastore = morphia.createDatastore(mongoClient, "daniel_haeser_rech_userapp");
-        datastore.ensureIndexes();
-        return datastore;
+        return morphia.createDatastore(mongoClient, "daniel_haeser_rech_userapp");
     }
 
     @PreDestroy

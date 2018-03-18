@@ -22,7 +22,7 @@ public class DatabaseSetup {
 
     @PostConstruct
     void postConstruct() {
-        ensureIndexes();
+        datastore.ensureIndexes();
         ensureAdminExists();
     }
 
@@ -35,9 +35,5 @@ public class DatabaseSetup {
             admin = new User("admin@foobar.com", "123456");
             datastore.save(admin);
         }
-    }
-
-    private void ensureIndexes() {
-        // TODO
     }
 }
