@@ -46,6 +46,10 @@ public class UserController {
 
         final Query<User> query = datastore.createQuery(User.class);
 
+        if (filter != null) {
+            query.search(filter);
+        }
+
         if (orderBy != null) {
             query.order(orderBy);
         }

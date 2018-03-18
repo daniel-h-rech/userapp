@@ -74,7 +74,7 @@ public class UserService {
     @GET
     @RolesAllowed(Permission.USER_RETRIEVE)
     public StreamingOutput query(
-            @QueryParam("filter")  @DefaultValue("")                       final String filter,
+            @QueryParam("filter")                                          final String filter,
             @QueryParam("orderby") @Valid @Pattern(regexp = ORDERBY_REGEX) final String orderBy,
             @QueryParam("offset")  @DefaultValue("0")                      final int offset,
             @QueryParam("limit")   @DefaultValue(DEFAULT_MAX_RESULTS)      final int limit) {
