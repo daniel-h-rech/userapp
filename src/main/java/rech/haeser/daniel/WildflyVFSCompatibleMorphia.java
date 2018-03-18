@@ -12,7 +12,7 @@ import org.mongodb.morphia.Morphia;
  * Morphia map-by-package methods do not work in Wildfly due to the way it handles jar/war/ear resources
  * using a virtual file system (jboss-vfs). This subclass fixes the issue.
  * <br><br>
- * TODO: propose change to the morphia team
+ * TODO propose change to the morphia team
  *
  * @author daniel.rech
  */
