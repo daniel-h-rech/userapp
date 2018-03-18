@@ -55,6 +55,7 @@ public class UserController {
                 .skip(offset)
                 .limit(limit);
 
+        // TODO use fetch
         return query.asList(options);
     }
 }

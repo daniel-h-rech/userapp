@@ -30,9 +30,9 @@ public class DatabaseSetup {
     // the default admin password would stay in memory and in the app bundle (war file).
     private void ensureAdminExists() {
         final Query<User> query = datastore.createQuery(User.class);
-        User admin = query.field("email").equal("admin").get();
+        User admin = query.field("email").equal("admin@foobar.com").get();
         if (admin == null) {
-            admin = new User("admin", "123456");
+            admin = new User("admin@foobar.com", "123456");
             datastore.save(admin);
         }
     }

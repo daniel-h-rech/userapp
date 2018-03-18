@@ -7,6 +7,7 @@ import javax.enterprise.inject.Produces;
 
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
+import org.mongodb.morphia.ValidationExtension;
 
 import com.mongodb.MongoClient;
 import rech.haeser.daniel.model.EntityPackage;
@@ -29,6 +30,7 @@ public class DatastoreProducer {
     public Datastore produceDatastore() {
 
         final Morphia morphia = new Morphia();
+        new ValidationExtension(morphia);
         morphia.mapPackage(EntityPackage.class.getPackage().getName());
 
         final Datastore datastore = morphia.createDatastore(mongoClient, "daniel_haeser_rech_userapp");
