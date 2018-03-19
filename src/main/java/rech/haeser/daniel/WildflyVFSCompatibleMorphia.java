@@ -28,13 +28,14 @@ public class WildflyVFSCompatibleMorphia extends Morphia {
 
             while (resources.hasMoreElements()) {
                 final URL url = resources.nextElement();
-                final JarInputStream inputStream = (JarInputStream) url.openStream();
+                try (JarInputStream inputStream = (JarInputStream) url.openStream()) {
 
-                JarEntry entry;
-                while ((entry = inputStream.getNextJarEntry()) != null) {
-                    if (entry.getName().endsWith(CLASS_SUFFIX)) {
-                        final String className = packageName + "." + entry.getName().substring(0, entry.getName().length() - CLASS_SUFFIX.length()).replace('/', '.');
-                        map(Class.forName(className));
+                    JarEntry entry;
+                    while ((entry = inputStream.getNextJarEntry()) != null) {
+                        if (entry.getName().endsWith(CLASS_SUFFIX)) {
+                            final String className = packageName + "." + entry.getName().substring(0, entry.getName().length() - CLASS_SUFFIX.length()).replace('/', '.');
+                            map(Class.forName(className));
+                        }
                     }
                 }
             }

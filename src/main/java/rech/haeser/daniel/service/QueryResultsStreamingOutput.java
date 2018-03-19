@@ -6,7 +6,6 @@ import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 
 import javax.ws.rs.NotFoundException;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.StreamingOutput;
 
 import org.mongodb.morphia.query.MorphiaIterator;
@@ -29,7 +28,7 @@ class QueryResultsStreamingOutput<T, R> implements StreamingOutput {
     }
 
     @Override
-    public void write(final OutputStream outputStream) throws IOException, WebApplicationException {
+    public void write(final OutputStream outputStream) throws IOException {
 
         final OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8.name());
 
