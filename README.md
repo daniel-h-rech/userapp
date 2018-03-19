@@ -81,15 +81,16 @@ The reponse body:
         }
         
 #### 4. Update the user ####
+Change the desired properties:
 
         PUT http://localhost:8080/userapp/v1/user
         Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJwZXJtaXNzaW9ucyI6WyJVU0VSX0NSRUFURSIsIlVTRVJfUkVUUklFVkUiLCJVU0VSX1VQREFURSIsIlVTRVJfREVMRVRFIl0sImV4cCI6MTUyMTQxNjg2NH0.sIuy4X2c56DpbII13M2g-NeG0ig-tV_1m-_M0O1mF3LJgcNJIa8bccH54tIc34ZkceTMNdhHLAsNZuo1u4hbvA
         {
             "id": "5aaefd077c683d1d2ccab4be",
             "name": "Daniel",
-            "email": "daniel@foobar.com",
+            "email": "daniel@foobar.org",
             "address": "Florianópolis, SC",
-            "phoneNumber": "(48) 99999 9999",
+            "phoneNumber": "(48) 12345 12345",
             "password": "123456"
         }
         
