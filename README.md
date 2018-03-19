@@ -43,6 +43,7 @@ The authentication token returns in the response body:
 For all subsequent requests, the token must be passed in the HTTP header:
 
         Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJwZXJtaXNzaW9ucyI6WyJVU0VSX0NSRUFURSIsIlVTRVJfUkVUUklFVkUiLCJVU0VSX1VQREFURSIsIlVTRVJfREVMRVRFIl0sImV4cCI6MTUyMTQxNjg2NH0.sIuy4X2c56DpbII13M2g-NeG0ig-tV_1m-_M0O1mF3LJgcNJIa8bccH54tIc34ZkceTMNdhHLAsNZuo1u4hbvA
+The token expires after 10 minutes.         
 
 #### 2. Create new user ####
 
@@ -55,7 +56,42 @@ For all subsequent requests, the token must be passed in the HTTP header:
             "phoneNumber": "(48) 99999 9999",
             "password": "123456"
         }
+The response body returns a new user with the ObjectId
 
+        {
+            "id": "5aaefd077c683d1d2ccab4be",
+            "name": "Daniel",
+            "email": "daniel@foobar.com",
+            "address": "Florianópolis",
+            "phoneNumber": "(48) 99999 9999"
+        }
+
+#### 3. Retrieve the user ####
+
+        GET http://localhost:8080/userapp/v1/user/5aaefd077c683d1d2ccab4be
+        Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJwZXJtaXNzaW9ucyI6WyJVU0VSX0NSRUFURSIsIlVTRVJfUkVUUklFVkUiLCJVU0VSX1VQREFURSIsIlVTRVJfREVMRVRFIl0sImV4cCI6MTUyMTQxNjg2NH0.sIuy4X2c56DpbII13M2g-NeG0ig-tV_1m-_M0O1mF3LJgcNJIa8bccH54tIc34ZkceTMNdhHLAsNZuo1u4hbvA
+The reponse body:
+        
+        {
+            "id": "5aaefd077c683d1d2ccab4be",
+            "name": "Daniel",
+            "email": "daniel@foobar.com",
+            "address": "Florianópolis",
+            "phoneNumber": "(48) 99999 9999"
+        }
+        
+#### 3. Update the user ####
+
+        POST http://localhost:8080/userapp/v1/user
+        Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJwZXJtaXNzaW9ucyI6WyJVU0VSX0NSRUFURSIsIlVTRVJfUkVUUklFVkUiLCJVU0VSX1VQREFURSIsIlVTRVJfREVMRVRFIl0sImV4cCI6MTUyMTQxNjg2NH0.sIuy4X2c56DpbII13M2g-NeG0ig-tV_1m-_M0O1mF3LJgcNJIa8bccH54tIc34ZkceTMNdhHLAsNZuo1u4hbvA
+        {
+            "id": "5aaefd077c683d1d2ccab4be",
+            "name": "Daniel",
+            "email": "daniel@foobar.com",
+            "address": "Florianópolis, SC",
+            "phoneNumber": "(48) 99999 9999",
+            "password": "123456"
+        }
 
 TODOs
 -----
