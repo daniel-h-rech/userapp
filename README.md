@@ -111,9 +111,9 @@ For the `filter` param you may use multiple terms separated by URL-encoded space
 
         GET http://localhost:8080/userapp/v1/user?filter=Florianopolis%20York 
         Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJwZXJtaXNzaW9ucyI6WyJVU0VSX0NSRUFURSIsIlVTRVJfUkVUUklFVkUiLCJVU0VSX1VQREFURSIsIlVTRVJfREVMRVRFIl0sImV4cCI6MTUyMTQxNjg2NH0.sIuy4X2c56DpbII13M2g-NeG0ig-tV_1m-_M0O1mF3LJgcNJIa8bccH54tIc34ZkceTMNdhHLAsNZuo1u4hbvA
-An exact phrase can be searched by enclosing it in URL-encoded double quotes:
+An exact phrase can be searched by enclosing it in single quotes:
 
-        GET http://localhost:8080/userapp/v1/user?filter=%22New%20York%22
+        GET http://localhost:8080/userapp/v1/user?filter='New%20York'
         Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJwZXJtaXNzaW9ucyI6WyJVU0VSX0NSRUFURSIsIlVTRVJfUkVUUklFVkUiLCJVU0VSX1VQREFURSIsIlVTRVJfREVMRVRFIl0sImV4cCI6MTUyMTQxNjg2NH0.sIuy4X2c56DpbII13M2g-NeG0ig-tV_1m-_M0O1mF3LJgcNJIa8bccH54tIc34ZkceTMNdhHLAsNZuo1u4hbvA
 
 
