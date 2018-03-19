@@ -26,7 +26,9 @@ Default admin user login is `admin@foobar.com` and password is `123456`.
 
 The base url for the application is `/userapp/v1/`.  
 
-A basic Swagger definition file is available at `/userapp/v1/swagger.json`
+A basic Swagger definition file is available at `/userapp/v1/swagger.json`:
+
+        GET http://localhost:8080/userapp/v1/swagger.json
 
 #### 1. Login ####
 
