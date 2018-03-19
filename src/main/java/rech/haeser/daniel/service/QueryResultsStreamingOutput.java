@@ -45,6 +45,7 @@ class QueryResultsStreamingOutput<T, R> implements StreamingOutput {
                 }
             }
             writer.write(']');
+            writer.flush();
         } else {
             throw new NotFoundException();
         }
