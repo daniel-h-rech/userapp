@@ -105,7 +105,17 @@ Query for users named Daniel, skipping the first 20 results, max 10 results, ord
 
         GET http://localhost:8080/userapp/v1/user?filter=Daniel&offset=20&limit=10&orderby=name,-email 
         Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJwZXJtaXNzaW9ucyI6WyJVU0VSX0NSRUFURSIsIlVTRVJfUkVUUklFVkUiLCJVU0VSX1VQREFURSIsIlVTRVJfREVMRVRFIl0sImV4cCI6MTUyMTQxNjg2NH0.sIuy4X2c56DpbII13M2g-NeG0ig-tV_1m-_M0O1mF3LJgcNJIa8bccH54tIc34ZkceTMNdhHLAsNZuo1u4hbvA
-You may omit any query param if the respective functionality is not desired.
+You may omit any query param if the respective functionality is not desired.  
+
+For the `filter` param you may use multiple terms separated by URL-encoded spaces:
+
+        GET http://localhost:8080/userapp/v1/user?filter=Florianopolis%20York 
+        Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJwZXJtaXNzaW9ucyI6WyJVU0VSX0NSRUFURSIsIlVTRVJfUkVUUklFVkUiLCJVU0VSX1VQREFURSIsIlVTRVJfREVMRVRFIl0sImV4cCI6MTUyMTQxNjg2NH0.sIuy4X2c56DpbII13M2g-NeG0ig-tV_1m-_M0O1mF3LJgcNJIa8bccH54tIc34ZkceTMNdhHLAsNZuo1u4hbvA
+An exact phrase can be searched by enclosing it in URL-encoded double quotes:
+
+        GET http://localhost:8080/userapp/v1/user?filter=%22New%20York%22
+        Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJwZXJtaXNzaW9ucyI6WyJVU0VSX0NSRUFURSIsIlVTRVJfUkVUUklFVkUiLCJVU0VSX1VQREFURSIsIlVTRVJfREVMRVRFIl0sImV4cCI6MTUyMTQxNjg2NH0.sIuy4X2c56DpbII13M2g-NeG0ig-tV_1m-_M0O1mF3LJgcNJIa8bccH54tIc34ZkceTMNdhHLAsNZuo1u4hbvA
+
 
 TODOs
 -----
