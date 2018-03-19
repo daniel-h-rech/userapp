@@ -5,7 +5,7 @@ Requirements
 ------------
 1. Java 8 (for Java Date and Time API)
 2. Wildfly 10
-3. Local MongoDB instance running on the default port 27017 
+3. Local MongoDB instance running. The database settings may be customized in the file `src/main/resources/config.properties`
 
 
 Build
